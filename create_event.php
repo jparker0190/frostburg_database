@@ -31,11 +31,14 @@ $conn->close();
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="style.css">
+    
     <title>Create Event</title>
 </head>
 <body>
     <h2>Create an Event</h2>
     <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+        <div class="container">
         <label for="event_name">Event Name:</label>
         <input type="text" name="event_name" required><br><br>
 
@@ -47,7 +50,7 @@ $conn->close();
 
         <label for="event_location">Event Location:</label>
         <input type="text" name="event_location" required><br><br>
-
+    
         <input type="submit" value="Create Event">
     </form>
 </body>

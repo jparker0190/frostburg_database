@@ -1,7 +1,7 @@
-<<<<<<< HEAD
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="style.css">
     <title>Event Management System</title>
     <style>
         /* Your CSS styles here */
@@ -25,10 +25,16 @@
 <body>
     <h1>Welcome to the Event Management System</h1>
 
-    <h2>Create an Event</h2>
-    <p><a href="create_event.php">Create Event</a></p>
+    <div class="container">
+        <h2>Create an Event</h2>
+        <p><a href="create_event.php" class="button">Create Event</a></p>
+    </div>
 
+    <br><br>
+
+    <div class="container">
     <h2>Available Events</h2>
+
     <?php
     // Database connection
     include 'db.php'; // Include your database connection file
@@ -126,8 +132,6 @@
 
     $conn->close();
     ?>
+    </div>
 </body>
 </html>
-=======
-
->>>>>>> 16fbca6ba0d4a389c5b350916c0c7b10f60e3880
