@@ -43,7 +43,7 @@
     if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['attendee_email'])) {
         $event_id = $_POST['event_id'];
         $attendee_email = $_POST['attendee_email'];
-
+        $attendee_name = $_POST['attendee_name'];
         // Check if the attendee exists by email
         $check_attendee_sql = "SELECT attendee_id FROM Attendees WHERE attendee_email = '$attendee_email'";
         $result = $conn->query($check_attendee_sql);
@@ -53,8 +53,8 @@
             $row = $result->fetch_assoc();
             $attendee_id = $row['attendee_id'];
         } else {
-            // Attendee doesn't exist, insert them into the Attendees table
-            $insert_attendee_sql = "INSERT INTO Attendees (attendee_email) VALUES ('$attendee_email')";
+            // Attendee doesn't exist, insert them into the Attendees table with name and email
+            $insert_attendee_sql = "INSERT INTO Attendees (attendee_name, attendee_email) VALUES ('$attendee_name', '$attendee_email')";
             if ($conn->query($insert_attendee_sql) === TRUE) {
                 $attendee_id = $conn->insert_id; // Get the ID of the inserted attendee
             } else {
