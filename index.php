@@ -114,16 +114,18 @@
             
             if ($attendees_result->num_rows > 0) {
                 while ($attendee = $attendees_result->fetch_assoc()) {
-                    echo '<p>Name: ' . $attendee['attendee_name'] . ', Email: ' . $attendee['attendee_email'] . '<input class="delete_button"type="submit" value="Delete Attendee"></p>';
                     echo '<form method="post" action="delete_attendee.php">';
+                    echo '<p>Name: ' . $attendee['attendee_name'] . ', Email: ' . $attendee['attendee_email'] . '</p>';
                     echo '<input type="hidden" name="event_id" value="' . $event_id . '">';
                     echo '<input type="hidden" name="registration_id" value="' . $attendee['registration_id'] . '">';
+                    echo '<input type="submit" class="delete_button" value="Delete Attendee">';
                     echo '</form>';
                 }
             } else {
                 echo 'No attendees registered.';
             }
             echo '</td>';
+            
 
             // Registration form button
             echo '<td>';
