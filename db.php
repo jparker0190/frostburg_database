@@ -1,9 +1,9 @@
 <?php
 $servername = "127.0.0.1";
 $username = "root";
-$password = "";
-$dbname = "event";
-$port = 8111;
+$password = "doges123";
+$dbname = "db1";
+$port = 3306;
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname, $port);

@@ -33,8 +33,8 @@
     <br><br>
 	
 	<div class="container">
-        <h2>View All Events</h2>
-        <p><a href="all_events.php" class="button">All Events</a></p>
+        <h2>Sort/Delete Events</h2>
+        <p><a href="all_events.php" class="button">Focused Event View</a></p>
     </div>
 
     <br><br>

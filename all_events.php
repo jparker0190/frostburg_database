@@ -23,8 +23,8 @@
     </style>
 </head>
 <body>
-    <h1>Welcome to the Event Management System</h1>
-	<p> All events are listed below. Use sorting buttons to find what you're looking for <p>
+    <h1>Focused Event View</h1>
+	<div class="container"><h3> All events are listed below. Use the sorting buttons to find what you're looking for. <h3></div>
 	
 	 <?php
     // Database connection
@@ -87,8 +87,9 @@ if (isset($_GET['sort'])) {
         
         echo '</table>';
     } else {
-        echo '<p>No events available.</p>';
+        echo '<div class="container"> <p>No events available.</p> </div>';
     }
+    echo '<div class="container"><a class="button" href="index.php">Back</a><div>';
     $conn->close();
     ?>
 	
