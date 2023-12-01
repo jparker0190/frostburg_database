@@ -31,13 +31,20 @@
     </div>
 
     <br><br>
+	
+	<div class="container">
+        <h2>View All Events</h2>
+        <p><a href="all_events.php" class="button">All Events</a></p>
+    </div>
+
+    <br><br>
 
     <div class="container">
     <h2>Available Events</h2>
 
     <?php
     // Database connection
-    include 'db.php'; // Include your database connection file
+    include 'db.php';
 
     // Handle event registration form submission
     if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['attendee_email'])) {
@@ -99,15 +106,19 @@
 
             // Fetch attendees registered for this event
             $event_id = $row['event_id'];
-            $attendees_sql = "SELECT Attendees.attendee_name, Attendees.attendee_email
+            $attendees_sql = "SELECT Registrations.registration_id, Attendees.attendee_name, Attendees.attendee_email
                               FROM Registrations
                               INNER JOIN Attendees ON Registrations.attendee_id = Attendees.attendee_id
                               WHERE Registrations.event_id = '$event_id'";
             $attendees_result = $conn->query($attendees_sql);
-
+            
             if ($attendees_result->num_rows > 0) {
                 while ($attendee = $attendees_result->fetch_assoc()) {
-                    echo '<p>Name: ' . $attendee['attendee_name'] . ', Email: ' . $attendee['attendee_email'] . '</p>';
+                    echo '<p>Name: ' . $attendee['attendee_name'] . ', Email: ' . $attendee['attendee_email'] . '<input class="delete_button"type="submit" value="Delete Attendee"></p>';
+                    echo '<form method="post" action="delete_attendee.php">';
+                    echo '<input type="hidden" name="event_id" value="' . $event_id . '">';
+                    echo '<input type="hidden" name="registration_id" value="' . $attendee['registration_id'] . '">';
+                    echo '</form>';
                 }
             } else {
                 echo 'No attendees registered.';

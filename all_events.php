@@ -28,7 +28,7 @@
 	
 	 <?php
     // Database connection
-    include 'db.php'; // Include your database connection file // Fetch available events from the Events table
+    include 'db.php'; 
     $sql = "SELECT * FROM Events";
     $result = $conn->query($sql);
 	//$sort = $_GET['sort']; 
@@ -64,23 +64,33 @@ if (isset($_GET['sort'])) {
         echo '<th><a href="all_events.php?sort=desc">Sort By Event Description:</a></th>';
         echo '<th><a href="all_events.php?sort=date">Sort By Event Date:</a></th>';
         echo '<th><a href="all_events.php?sort=loc">Sort By Event Location:</a></th>';
+        echo '<th>Delete Event</th>'; 
         echo '</tr>';
+        
         while ($row = $result->fetch_assoc()) {
             echo '<tr>';
             echo '<td>' . $row['event_name'] . '</td>';
             echo '<td>' . $row['event_description'] . '</td>';
             echo '<td>' . $row['event_date'] . '</td>';
             echo '<td>' . $row['event_location'] . '</td>';
-          
-		}
-		
-			
-		
-	}else {
+            
+
+            echo '<td>';
+            echo '<form method="post" action="delete_event.php">';
+            echo '<input type="hidden" name="event_id" value="' . $row['event_id'] . '">';
+            echo '<input type="submit" value="Delete">';
+            echo '</form>';
+            echo '</td>';
+            
+            echo '</tr>';
+        }
+        
+        echo '</table>';
+    } else {
         echo '<p>No events available.</p>';
-}
-$conn->close();	
-	?>
+    }
+    $conn->close();
+    ?>
 	
 </body>
 </html>	
